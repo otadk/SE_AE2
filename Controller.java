@@ -63,8 +63,10 @@ public class Controller {
 
         List<String[]> stringData = new ArrayList<String[]> ();
         String[] data0 = {"teachingRequirementData", "staffData", "trainingData"};
-        for (int i = 0; i < data.get(0).size(); ++i) {
-            stringData.add(new String[]{"TeachingRequirement", data.get(0).get(i).toString()});
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < data.get(i).size(); ++j) {
+                //stringData.add(new String[]{data0[i], data.get(i).get(j).toString()});
+            }
         }
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
