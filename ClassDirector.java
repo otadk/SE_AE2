@@ -9,8 +9,4 @@ public class ClassDirector {
      * deleteTeachingRequirement()
      * editTeachingRequirement()
      */
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 06be5760fde51b64f11f74c73323c264b1413e02

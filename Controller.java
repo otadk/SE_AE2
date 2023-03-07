@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.io.FileWriter;
 import java.io.PrintWriter;
-=======
->>>>>>> 06be5760fde51b64f11f74c73323c264b1413e02
 
 
 public class Controller {
@@ -52,11 +49,6 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 06be5760fde51b64f11f74c73323c264b1413e02
         result.add(teachingRequirementData);
         result.add(staffData);
         result.add(trainingData);
@@ -64,7 +56,6 @@ public class Controller {
         return result;
     }
 
-<<<<<<< HEAD
     public void saveData(List<List<Object>> data) {
 
         String filePath = "data.csv";
@@ -84,7 +75,4 @@ public class Controller {
             e.printStackTrace();
         }
     }
-=======
-
->>>>>>> 06be5760fde51b64f11f74c73323c264b1413e02
 }
