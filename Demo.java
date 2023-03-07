@@ -19,7 +19,10 @@ public class Demo {
 
         Scanner scanner = new Scanner(System.in);
         scanner.close();
+<<<<<<< HEAD
 
         controller.saveData(data);
+=======
+>>>>>>> 06be5760fde51b64f11f74c73323c264b1413e02
     }
 }
