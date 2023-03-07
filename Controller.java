@@ -57,22 +57,19 @@ public class Controller {
     }
 
     public void saveData(List<List<Object>> data) {
+        // String filePath = "data.csv";
 
-        String filePath = "data.csv";
+        // List<String[]> stringData = new ArrayList<String[]> ();
+        // String[] data0 = {"teachingRequirementData", "staffData", "trainingData"};
+        // for (int i = 0; i < 3; ++i) {
+        //     for (int j = 0; j < data.get(i).size(); ++j) {
+        //     }
+        // }
 
-        List<String[]> stringData = new ArrayList<String[]> ();
-        String[] data0 = {"teachingRequirementData", "staffData", "trainingData"};
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < data.get(i).size(); ++j) {
-                //stringData.add(new String[]{data0[i], data.get(i).get(j).toString()});
-                //asd
-            }
-        }
-
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            stringData.stream().map(row -> String.join(",", row)).forEach(writer::println);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+        //     stringData.stream().map(row -> String.join(",", row)).forEach(writer::println);
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
     }
 }
