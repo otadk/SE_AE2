@@ -66,6 +66,7 @@ public class Controller {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < data.get(i).size(); ++j) {
                 //stringData.add(new String[]{data0[i], data.get(i).get(j).toString()});
+                //asd
             }
         }
 
