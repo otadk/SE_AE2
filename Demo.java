@@ -20,10 +20,6 @@ public class Demo {
             }
         }
 
-        // 获取 teachingRequirements，training和staff同理
-        // List<TeachingRequirement> teachingRequirements = data.get(0).stream()
-        // .map(obj -> (TeachingRequirement) obj)
-        // .collect(Collectors.toList());
 
         Scanner scanner = new Scanner(System.in);
         scanner.close();

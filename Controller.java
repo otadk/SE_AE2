@@ -61,20 +61,42 @@ public class Controller {
         String filePath = "data.csv";
 
         List<String[]> stringData = new ArrayList<String[]> ();
-        String[] data0 = {"teachingRequirementData", "staffData", "trainingData"};
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < data.get(i).size(); ++j) {
-                //这里如果任意一个类的toString不再以,分隔则会失效
-                stringData.add(
-                    Stream.concat(Stream.of(data0[i]), Arrays.stream(data.get(i).toString().split(",")))
-                    .toArray(String[]::new)
-                );
-            }
+        for (TeachingRequirement t : dataToTeachingRequirements(data)) {
+            stringData.add(
+                Stream.concat(Stream.of("TeachingRequirement"), Arrays.stream(t.toString().split(",")))
+                .toArray(String[]::new)
+            );
         }
+        for (Staff t : dataToStaffs(data)) {
+            stringData.add(
+                Stream.concat(Stream.of("Staff"), Arrays.stream(t.toString().split(",")))
+                .toArray(String[]::new)
+            );
+        }
+        for (Training t : dataToTrainings(data)) {
+            stringData.add(
+                Stream.concat(Stream.of("Training"), Arrays.stream(t.toString().split(",")))
+                .toArray(String[]::new)
+            );
+        }
+        
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             stringData.stream().map(row -> String.join(",", row)).forEach(writer::println);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public List<TeachingRequirement> dataToTeachingRequirements(List<List<Object>> data) {
+        return data.get(0).stream().map(obj -> (TeachingRequirement) obj).collect(Collectors.toList());
+    }
+
+    public List<Staff> dataToStaffs(List<List<Object>> data) {
+        return data.get(1).stream().map(obj -> (Staff) obj).collect(Collectors.toList());
+    }
+
+    public List<Training> dataToTrainings(List<List<Object>> data) {
+        return data.get(2).stream().map(obj -> (Training) obj).collect(Collectors.toList());
+    }
+
 }
