@@ -38,18 +38,15 @@ public class Controller {
                 if (data[0].equals("TeachingRequirement")) {
                     teachingRequirementData.add(new TeachingRequirement(data[1]));
                 } else if (data[0].equals("Staff")) {
-                    List<String> skills = new ArrayList<String> ();
-                    skills.addAll(Arrays.asList(Arrays.copyOfRange(data, 2, data.length)));
-                    staffData.add(new Staff(data[1], skills));
+                    staffData.add(new Staff(data[1], Arrays.stream(data, 2, data.length).collect(Collectors.toList())));
                 } else if (data[0].equals("Training")) {
-                    List<String> stringList = Arrays.asList(Arrays.copyOfRange(data, 2, data.length));
-                    List<Staff> staffList = stringList.stream().map(arr -> new Staff(arr)).collect(Collectors.toList());
-                    trainingData.add(new Training(data[1], staffList));
+                    trainingData.add(new Training(data[1], Arrays.stream(data, 2, data.length).map(arr -> new Staff(arr)).collect(Collectors.toList())));
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         result.add(teachingRequirementData);
         result.add(staffData);
         result.add(trainingData);
