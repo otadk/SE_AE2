@@ -28,7 +28,4 @@ public class Staff {
     public String getName() {
         return this.name;
     }
-    /*
-     * toString()
-     */
 }

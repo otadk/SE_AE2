@@ -56,7 +56,7 @@ public class Controller {
         return result;
     }
 
-    public void saveData(List<List<Object>> data) {
+    public void saveData(List<TeachingRequirement> teachingRequirementData, List<Staff> staffData, List<Training> trainingData ) {
         // String filePath = "data.csv";
 
         // List<String[]> stringData = new ArrayList<String[]> ();

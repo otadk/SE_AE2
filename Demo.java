@@ -20,6 +20,6 @@ public class Demo {
         Scanner scanner = new Scanner(System.in);
         scanner.close();
 
-        controller.saveData(data);
+        controller.saveData(data[0], data[1], data[2]);
     }
 }
