@@ -23,53 +23,49 @@ public class Controller {
 
     public List<List<Object>> loadData() {
 
-        List<List<Object>> result = new ArrayList<List<Object>> ();
-        List<Object> teachingRequirementData = new ArrayList<Object> ();
-        List<Object> staffData = new ArrayList<Object> ();
-        List<Object> trainingData = new ArrayList<Object> ();
+        List<List<Object>> data = new ArrayList<List<Object>> ();
 
-        String filePath = "data.csv";
-        String line = "";
-        String cvsSplitBy = ",";
+        for (int i = 0; i < 3; ++i) {
+            data.add(new ArrayList<Object> ());
+        }
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("data.csv"))) {
+            String line = "";
             while ((line = bufferedReader.readLine()) != null) {
-                String[] data = line.split(cvsSplitBy);
-                if (data[0].equals("TeachingRequirement")) {
-                    teachingRequirementData.add(new TeachingRequirement(data[1]));
-                } else if (data[0].equals("Staff")) {
-                    staffData.add(new Staff(data[1], Arrays.stream(data, 2, data.length).collect(Collectors.toList())));
-                } else if (data[0].equals("Training")) {
-                    trainingData.add(new Training(data[1], Arrays.stream(data, 2, data.length).map(arr -> new Staff(arr)).collect(Collectors.toList())));
+                String[] stringData = line.split(",");
+                if (stringData[0].equals("TeachingRequirement")) {
+                    data.get(0).add(new TeachingRequirement(stringData[1]));
+                } else if (stringData[0].equals("Staff")) {
+                    data.get(1).add(new Staff(stringData[1], Arrays.stream(stringData, 2, stringData.length).collect(Collectors.toList())));
+                } else if (stringData[0].equals("Training")) {
+                    data.get(2).add(new Training(stringData[1], Arrays.stream(stringData, 2, stringData.length).map(arr -> new Staff(arr)).collect(Collectors.toList())));
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        result.add(teachingRequirementData);
-        result.add(staffData);
-        result.add(trainingData);
        
-        return result;
+        return data;
     }
 
     public void saveData(List<List<Object>> data) {
-        String filePath = "data.csv";
 
         List<String[]> stringData = new ArrayList<String[]> ();
+
         for (TeachingRequirement t : dataToTeachingRequirements(data)) {
             stringData.add(
                 Stream.concat(Stream.of("TeachingRequirement"), Arrays.stream(t.toString().split(",")))
                 .toArray(String[]::new)
             );
         }
+
         for (Staff t : dataToStaffs(data)) {
             stringData.add(
                 Stream.concat(Stream.of("Staff"), Arrays.stream(t.toString().split(",")))
                 .toArray(String[]::new)
             );
         }
+        
         for (Training t : dataToTrainings(data)) {
             stringData.add(
                 Stream.concat(Stream.of("Training"), Arrays.stream(t.toString().split(",")))
@@ -77,7 +73,7 @@ public class Controller {
             );
         }
         
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("data.csv"))) {
             stringData.stream().map(row -> String.join(",", row)).forEach(writer::println);
         } catch (IOException e) {
             e.printStackTrace();
