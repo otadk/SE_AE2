@@ -15,7 +15,7 @@ public class Staff {
 
     public String toString() {
         String result = "";
-        result += this.name + "||";
+        result += this.name + ",";
         for (int i = 0; i < this.skills.size(); ++i) {
             result += this.skills.get(i);
             if (i < this.skills.size() - 1) {

@@ -1,7 +1,8 @@
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -56,20 +57,24 @@ public class Controller {
         return result;
     }
 
-    public void saveData(List<TeachingRequirement> teachingRequirementData, List<Staff> staffData, List<Training> trainingData ) {
-        // String filePath = "data.csv";
+    public void saveData(List<List<Object>> data) {
+        String filePath = "data.csv";
 
-        // List<String[]> stringData = new ArrayList<String[]> ();
-        // String[] data0 = {"teachingRequirementData", "staffData", "trainingData"};
-        // for (int i = 0; i < 3; ++i) {
-        //     for (int j = 0; j < data.get(i).size(); ++j) {
-        //     }
-        // }
-
-        // try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-        //     stringData.stream().map(row -> String.join(",", row)).forEach(writer::println);
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
+        List<String[]> stringData = new ArrayList<String[]> ();
+        String[] data0 = {"teachingRequirementData", "staffData", "trainingData"};
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < data.get(i).size(); ++j) {
+                //这里如果任意一个类的toString不再以,分隔则会失效
+                stringData.add(
+                    Stream.concat(Stream.of(data0[i]), Arrays.stream(data.get(i).toString().split(",")))
+                    .toArray(String[]::new)
+                );
+            }
+        }
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+            stringData.stream().map(row -> String.join(",", row)).forEach(writer::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

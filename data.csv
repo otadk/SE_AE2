@@ -1,6 +1,6 @@
-TeachingRequirement,Math teacher!!!!
-TeachingRequirement,We have too many computer science students!! We need related lecturers!!!
-Staff,Jupyter,Python,Information Visualization
-Staff,Peter,High level language skill,Handsome
-Training,Java Project,Jupyter,Tim
-Training,Be alive,Peter,Tim,Bob
+teachingRequirementData,[Math teacher!!!!, We have too many computer science students!! We need related lecturers!!!]
+teachingRequirementData,[Math teacher!!!!, We have too many computer science students!! We need related lecturers!!!]
+staffData,[Jupyter,Python,Information Visualization, Peter,High level language skill,Handsome]
+staffData,[Jupyter,Python,Information Visualization, Peter,High level language skill,Handsome]
+trainingData,[Java Project,Jupyter,Tim, Be alive,Peter,Tim,Bob]
+trainingData,[Java Project,Jupyter,Tim, Be alive,Peter,Tim,Bob]

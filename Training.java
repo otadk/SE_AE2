@@ -11,7 +11,7 @@ public class Training {
 
     public String toString() {
         String result = "";
-        result += this.name + "\n--";
+        result += this.name + ",";
         for (int i = 0; i < this.staffList.size(); ++i) {
             result += this.staffList.get(i).getName();
             if (i < this.staffList.size() - 1) {
