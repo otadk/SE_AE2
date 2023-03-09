@@ -1,59 +1,30 @@
-import java.util.ArrayList;
-import java.util.List;
+public class User {
 
-/**
- * User,test1,123456
- * User,test2,123456
- * User,test3,123456
- */
-public abstract class User {
+    private String username;  //用户名
+    private String password;  //用户密码
+    private String type;      //用户类型，子类创建时会提供
 
-    private String username;
-    private String password;
-
-    public User(String username, String password) {
+    public User(String username, String password, String type) {
         this.username = username;
         this.password = password;
+        this.type = type;
+    }
+    
+    //检查用户名和用户密码是否正确
+    public boolean check(String username, String password) {
+        return this.username.equals(username.trim()) && this.password.equals(password.trim());
     }
 
-
-    public static boolean login(String username, String password,List<List<Object>> data){
-        List<Object> userData = data.get(3);
-        for (int i = 0; i < userData.size(); ++i) {
-            List<String> user = (ArrayList<String>) userData.get(i);
-            if(user.get(0).equals(username.trim())){
-                if(user.get(1).equals(password.trim())){
-                    return true;
-                }
-            }
-        }
-        return false;
+    //获取用户类型
+    public String getType() {
+        return this.type;
     }
 
-
-    public List<Object> getTeachingRequirement( List<List<Object>> data){
-        return data.get(0);
+    public String toString() {
+        return username + "," + password + "," + type;
     }
 
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    /*
-     * login()
-     * getTeachingRequirement()
-     */
-
+    // public List<Object> getTeachingRequirement( List<List<Object>> data){
+    //     return data.get(0);
+    // }
 }

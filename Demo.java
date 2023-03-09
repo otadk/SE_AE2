@@ -1,33 +1,29 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class Demo {
     public static void main(String[] args) {
+
+        //新建控制器
         Controller controller = new Controller();
 
+        //新建数据表，读取数据
         List<List<Object>> data = controller.loadData();
 
-        // 这里只是用来展示数据，最后可以删除
-        System.out.println("\nWelcome!");
-        String[] show = {"teachingRequirementData", "staffData", "trainingData","userData"};
-        for (int i = 0; i < data.size(); ++i) {
-            System.out.println("\n---->>" + show[i]);
-            for (int j = 0; j < data.get(i).size(); ++j) {
-                System.out.println(data.get(i).get(j));
-            }
-        }
-
-
-
-
-
-
+        //新建scanner用于读取用户输入
         Scanner scanner = new Scanner(System.in);
+
+        //用户登陆，并获得特定的User类，也就是ClassDirector或Administrator
+        User user = controller.login(scanner, controller.dataToUsers(data));
+
+        //循环 用户指令交互
+        if (user != null) controller.commandLoop(scanner, user, data);
+
+        //关闭scanner
         scanner.close();
 
+        //保存数据
         controller.saveData(data);
     }
 }
