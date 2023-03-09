@@ -1,7 +1,3 @@
-package com.letg;
-
-import com.letg.Controller;
-
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;

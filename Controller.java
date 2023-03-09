@@ -1,7 +1,3 @@
-package com.letg;
-
-import com.letg.User;
-
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -44,7 +40,7 @@ public class Controller {
                 } else if (stringData[0].equals("Training")) {
                     data.get(2).add(new Training(stringData[1], Arrays.stream(stringData, 2, stringData.length).map(arr -> new Staff(arr)).collect(Collectors.toList())));
                 } else if (stringData[0].equals("User")) {
-                    data.get(3).add(Arrays.stream(stringData, 1, stringData.length).collect(Collectors.toList()));
+                    data.get(3).add(new User(stringData[1], stringData[2]));
                 }
             }
         } catch (IOException e) {

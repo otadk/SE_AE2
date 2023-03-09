@@ -1,5 +1,3 @@
-package com.letg;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +7,14 @@ import java.util.List;
  * User,test3,123456
  */
 public abstract class User {
+
     private String username;
     private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
 
     public static boolean login(String username, String password,List<List<Object>> data){
