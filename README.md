@@ -1,3 +1,3 @@
 # SE_AE2
 
-run the demo.java
+run Demo.java
