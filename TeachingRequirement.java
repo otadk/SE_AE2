@@ -8,9 +8,13 @@ public class TeachingRequirement {
     public String toString() {
         return this.data;
     }
-    
-    /*
-     * getData()
-     * setData()
-     */
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
 }

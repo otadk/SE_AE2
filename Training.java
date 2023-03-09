@@ -20,12 +20,20 @@ public class Training {
         }
         return result;
     }
-    
-    /*
-     * getName()
-     * setName()
-     * getStaffList()
-     * setStaffList()
-     */
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Staff> getStaffList() {
+        return staffList;
+    }
+
+    public void setStaffList(List<Staff> staffList) {
+        this.staffList = staffList;
+    }
 }
