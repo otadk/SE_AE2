@@ -1,3 +1,7 @@
+package com.letg;
+
+import com.letg.Controller;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +16,17 @@ public class Demo {
 
         // 这里只是用来展示数据，最后可以删除
         System.out.println("\nWelcome!");
-        String[] show = {"teachingRequirementData", "staffData", "trainingData"};
+        String[] show = {"teachingRequirementData", "staffData", "trainingData","userData"};
         for (int i = 0; i < data.size(); ++i) {
             System.out.println("\n---->>" + show[i]);
             for (int j = 0; j < data.get(i).size(); ++j) {
                 System.out.println(data.get(i).get(j));
             }
         }
+
+
+
+
 
 
         Scanner scanner = new Scanner(System.in);
