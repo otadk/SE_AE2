@@ -135,6 +135,34 @@ public class Controller {
 
                 //展示可以输出的命令
                 //调用administrator的方法
+
+                //getTeachingRequirement还没有实现
+                String[] commands = {"getTeachingRequirement", "getStaffList", "selectStaff", "deleteSelectedStaff", "addTraining", "deleteTraining"};
+                
+                System.out.println("This is the menu of admin: ");
+                for (int i = 0; i < 6; ++i) {
+                    System.out.println("input " + i + " ->> " + commands[i]);
+                }
+                System.out.println("Please select your operation: ");
+                
+                String input = scanner.nextLine();
+                System.out.println("You have selected: "+ input);
+                
+                if (input.equals(commands[1]) || input.equals("1")) {
+                    administrator.getStaff();
+                } else if (input.equals(commands[2]) || input.equals("2")) {
+                    System.out.println("Please select a staff name: ");
+                    administrator.selectStaff(scanner.nextLine().trim());
+                } else if (input.equals(commands[3]) || input.equals("3")) {
+                    System.out.println("Please unselect a staff name: ");
+                    administrator.deleteSelectStaff(scanner.nextLine().trim());
+                } else if (input.equals(commands[4]) || input.equals("4")) {
+                    System.out.println("Please input a training name for adding: ");
+                    administrator.addTraining(scanner.nextLine().trim());
+                } else if (input.equals(commands[5]) || input.equals("5")) {
+                    System.out.println("Please input a training name for deleting: ");
+                    administrator.deleteTraining(scanner.nextLine().trim());
+                }
             }
         }
 

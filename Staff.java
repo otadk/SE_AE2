@@ -28,4 +28,8 @@ public class Staff {
     public String getName() {
         return this.name;
     }
+
+    public List<String> getSkills() {
+        return skills;
+    }
 }

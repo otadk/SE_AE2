@@ -1,8 +1,14 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class Training {
     private String name;
     private List<Staff> staffList;
+
+    public Training(String name) {
+        this.name = name;
+        this.staffList = new ArrayList<Staff> (); 
+    }
 
     public Training(String name, List<Staff> staffList) {
         this.name = name;
@@ -20,6 +26,10 @@ public class Training {
         }
         return result;
     }
+
+    public String getName() {
+		return name;
+	}
     
     /*
      * getName()
