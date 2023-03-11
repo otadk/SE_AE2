@@ -1,17 +1,16 @@
 import java.util.List;
-import java.util.ArrayList;
 
-public class Training {
+public class Course {
+
     private String name;
     private List<Staff> staffList;
 
-    public Training(String name) {
-        this.name = name;
-        this.staffList = new ArrayList<Staff> (); 
+    public Course(String data) {
+        this.name = data;
     }
 
-    public Training(String name, List<Staff> staffList) {
-        this.name = name;
+    public Course(String data, List<Staff> staffList) {
+        this.name = data;
         this.staffList = staffList;
     }
 
@@ -25,19 +24,10 @@ public class Training {
     }
 
     public String getName() {
-		return name;
-	}
-
-    public void setName(String name) {
-        this.name = name;
+        return name;
     }
 
     public List<Staff> getStaffList() {
         return staffList;
     }
-
-    public void setStaffList(List<Staff> staffList) {
-        this.staffList = staffList;
-    }
-    
 }

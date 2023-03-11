@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-
 public class Controller {
 
     //读取csv数据转化为list
@@ -18,7 +17,7 @@ public class Controller {
 
         List<List<Object>> data = new ArrayList<List<Object>>();
 
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 5; ++i) {
             data.add(new ArrayList<Object>());
         }
 
@@ -28,13 +27,15 @@ public class Controller {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] stringData = line.split(",");
                 if (stringData[0].equals("TeachingRequirement")) {
-                    data.get(0).add(new TeachingRequirement(stringData[1]));
+                    data.get(0).add(new TeachingRequirement(stringData[1], Arrays.stream(stringData, 2, stringData.length).map(arr -> new Course(arr)).collect(Collectors.toList())));
                 } else if (stringData[0].equals("Staff")) {
                     data.get(1).add(new Staff(stringData[1], Arrays.stream(stringData, 2, stringData.length).collect(Collectors.toList())));
                 } else if (stringData[0].equals("Training")) {
                     data.get(2).add(new Training(stringData[1], Arrays.stream(stringData, 2, stringData.length).map(arr -> new Staff(arr)).collect(Collectors.toList())));
                 } else if (stringData[0].equals("User")) {
                     data.get(3).add(new User(stringData[1], stringData[2], stringData[3]));
+                } else if (stringData[0].equals("Course")) {
+                    data.get(4).add(new Course(stringData[1], Arrays.stream(stringData, 2, stringData.length).map(arr -> new Staff(arr)).collect(Collectors.toList())));
                 }
             }
         } catch (IOException e) {
@@ -51,30 +52,37 @@ public class Controller {
         List<String[]> stringData = new ArrayList<String[]>();
 
         //把每种数据都通过toString导入stringData
-        for (TeachingRequirement t : dataToTeachingRequirements(data)) {
+        for (TeachingRequirement t : dataToTeachingRequirementList(data)) {
             stringData.add(
                     Stream.concat(Stream.of("TeachingRequirement"), Arrays.stream(t.toString().split(",")))
                             .toArray(String[]::new)
             );
         }
 
-        for (Staff t : dataToStaffs(data)) {
+        for (Staff t : dataToStaffList(data)) {
             stringData.add(
                     Stream.concat(Stream.of("Staff"), Arrays.stream(t.toString().split(",")))
                             .toArray(String[]::new)
             );
         }
 
-        for (Training t : dataToTrainings(data)) {
+        for (Training t : dataToTrainingList(data)) {
             stringData.add(
                     Stream.concat(Stream.of("Training"), Arrays.stream(t.toString().split(",")))
                             .toArray(String[]::new)
             );
         }
 
-        for (User t : dataToUsers(data)) {
+        for (User t : dataToUserList(data)) {
             stringData.add(
-                Stream.concat(Stream.of("user"), Arrays.stream(t.toString().split(",")))
+                Stream.concat(Stream.of("User"), Arrays.stream(t.toString().split(",")))
+                        .toArray(String[]::new)
+            );
+        }
+
+        for (Course t : dataToCourseList(data)) {
+            stringData.add(
+                Stream.concat(Stream.of("Course"), Arrays.stream(t.toString().split(",")))
                         .toArray(String[]::new)
             );
         }
@@ -129,6 +137,34 @@ public class Controller {
                 //展示可以输出的命令
                 //调用classDirector的方法
 
+                String[] commands = {"getTeachingRequirement", "addTeachingRequirement", "deleteTeachingRequirement", "exit"};
+
+                System.out.println("\nThis is the menu of classDirector : ");
+                for (int i = 0; i < 4; ++i) {
+                    System.out.println("input " + i + " ->> " + commands[i]);
+                }
+                System.out.println("Please select your operation: ");
+
+                String input = scanner.nextLine();
+
+                if (input.equals(commands[0]) || input.equals("0")) {
+                    System.out.println("Selected operation: " + commands[0] + "\n");
+                    classDirector.getTeachingRequirement(dataToTeachingRequirementList(data));
+                } else if (input.equals(commands[1]) || input.equals("1")) {
+                    System.out.println("Selected operation: " + commands[1] + "\n");
+                    System.out.println("Please add or change a teachingRequirement with name and course: ");
+                    // classDirector.addTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim());
+                } else if (input.equals(commands[2]) || input.equals("2")) {
+                    System.out.println("Selected operation: " + commands[2] + "\n");
+                    System.out.println("Please delte a teachingRequirement with name: ");
+                    // classDirector.deleteTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim());
+                } else if (input.equals(commands[3]) || input.equals("3")) {
+                    System.out.println("Selected operation: " + commands[3] + "\n");
+                    break;
+                } else {
+                    System.out.println("Please input a valid command");
+                }
+
             } else if (user.getType().equals("Administrator")) {
 
                 Administrator administrator = (Administrator)user;
@@ -136,55 +172,69 @@ public class Controller {
                 //展示可以输出的命令
                 //调用administrator的方法
 
-                //getTeachingRequirement还没有实现
-                String[] commands = {"getTeachingRequirement", "getStaffList", "selectStaff", "deleteSelectedStaff", "addTraining", "deleteTraining"};
+                String[] commands = {"getTeachingRequirement", "getStaffList", "addTraining", "deleteTraining","addCourse","deleteCourse","exit"};
                 
-                System.out.println("This is the menu of admin: ");
-                for (int i = 0; i < 6; ++i) {
+                System.out.println("\nThis is the menu of administrator : ");
+                for (int i = 0; i < 7; ++i) {
                     System.out.println("input " + i + " ->> " + commands[i]);
                 }
                 System.out.println("Please select your operation: ");
                 
                 String input = scanner.nextLine();
-                System.out.println("You have selected: "+ input);
                 
-                if (input.equals(commands[1]) || input.equals("1")) {
-                    administrator.getStaff();
+                if (input.equals(commands[0]) || input.equals("0")) {
+                    System.out.println("Selected operation: " + commands[0] + "\n");
+                    administrator.getTeachingRequirement(dataToTeachingRequirementList(data));
+                } else if (input.equals(commands[1]) || input.equals("1")) {
+                    System.out.println("Selected operation: " + commands[1] + "\n");
+                    // administrator.getStaffList(dataToTeachingRequirementList(data));
                 } else if (input.equals(commands[2]) || input.equals("2")) {
-                    System.out.println("Please select a staff name: ");
-                    administrator.selectStaff(scanner.nextLine().trim());
+                    System.out.println("Selected operation: " + commands[2] + "\n");
+                    System.out.println("Please add or change a training with name and staff: ");
+                    // administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim());
                 } else if (input.equals(commands[3]) || input.equals("3")) {
-                    System.out.println("Please unselect a staff name: ");
-                    administrator.deleteSelectStaff(scanner.nextLine().trim());
+                    System.out.println("Selected operation: " + commands[3] + "\n");
+                    System.out.println("Please delete a training with name: ");
+                    // administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim());
                 } else if (input.equals(commands[4]) || input.equals("4")) {
-                    System.out.println("Please input a training name for adding: ");
-                    administrator.addTraining(scanner.nextLine().trim());
+                    System.out.println("Selected operation: " + commands[4] + "\n");
+                    System.out.println("Please add or change a course with name and staff: ");
+                    // administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim());
                 } else if (input.equals(commands[5]) || input.equals("5")) {
-                    System.out.println("Please input a training name for deleting: ");
-                    administrator.deleteTraining(scanner.nextLine().trim());
+                    System.out.println("Selected operation: " + commands[5] + "\n");
+                    System.out.println("Please delete a course with name: ");
+                    // administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim());
+                } else if (input.equals(commands[6]) || input.equals("6")) {
+                    System.out.println("Selected operation: " + commands[6] + "\n");
+                    break;
+                } else {
+                    System.out.println("Please input a valid command");
                 }
             }
         }
 
         //结束程序
-        System.out.println("See you letter~");
+        System.out.println("See you latter ~~~ ");
     }
 
     //将抽象类的list转为具体数据类的list，本质是强制类型转化
-    public List<TeachingRequirement> dataToTeachingRequirements(List<List<Object>> data) {
+    public List<TeachingRequirement> dataToTeachingRequirementList(List<List<Object>> data) {
         return data.get(0).stream().map(obj -> (TeachingRequirement) obj).collect(Collectors.toList());
     }
 
-    public List<Staff> dataToStaffs(List<List<Object>> data) {
+    public List<Staff> dataToStaffList(List<List<Object>> data) {
         return data.get(1).stream().map(obj -> (Staff) obj).collect(Collectors.toList());
     }
 
-    public List<Training> dataToTrainings(List<List<Object>> data) {
+    public List<Training> dataToTrainingList(List<List<Object>> data) {
         return data.get(2).stream().map(obj -> (Training) obj).collect(Collectors.toList());
     }
 
-    public List<User> dataToUsers(List<List<Object>> data) {
+    public List<User> dataToUserList(List<List<Object>> data) {
         return data.get(3).stream().map(obj -> (User) obj).collect(Collectors.toList());
     }
 
+    public List<Course> dataToCourseList(List<List<Object>> data) {
+        return data.get(4).stream().map(obj -> (Course) obj).collect(Collectors.toList());
+    }
 }

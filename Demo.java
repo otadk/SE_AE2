@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.util.List;
 
-
 public class Demo {
     public static void main(String[] args) {
 
@@ -15,7 +14,7 @@ public class Demo {
         Scanner scanner = new Scanner(System.in);
 
         //用户登陆，并获得特定的User类，也就是ClassDirector或Administrator
-        User user = controller.login(scanner, controller.dataToUsers(data));
+        User user = controller.login(scanner, controller.dataToUserList(data));
 
         //循环 用户指令交互
         if (user != null) controller.commandLoop(scanner, user, data);

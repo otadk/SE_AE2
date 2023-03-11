@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class User {
 
     private String username;  //用户名
@@ -24,7 +26,9 @@ public class User {
         return username + "," + password + "," + type;
     }
 
-    // public List<Object> getTeachingRequirement( List<List<Object>> data){
-    //     return data.get(0);
-    // }
+    public void getTeachingRequirement(List<TeachingRequirement> data){
+        for (int i = 0; i < data.size(); ++i) {
+            System.out.println("TeachingRequirement " + i + " :: " + data.get(i).toString());
+        }
+    }
 }

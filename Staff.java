@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class Staff {
+    
     private String name;
     private List<String> skills;
 
@@ -15,12 +16,9 @@ public class Staff {
 
     public String toString() {
         String result = "";
-        result += this.name + ",";
+        result += this.name;
         for (int i = 0; i < this.skills.size(); ++i) {
-            result += this.skills.get(i);
-            if (i < this.skills.size() - 1) {
-                result += ",";
-            }
+            result += "," + this.skills.get(i);
         }
         return result;
     }

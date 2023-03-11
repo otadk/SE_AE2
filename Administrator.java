@@ -10,7 +10,22 @@ public class Administrator extends User {
         super(username, password, "Administrator");
     }
 
-	//get the staff list
+    // 完成以下调用，其他的函数可以删除
+    // administrator.getStaffList(dataToTeachingRequirementList(data));
+    // administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim());
+    // administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim());
+    // administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim());
+    // administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim());
+
+    /*
+     * getStaffList()
+     * addTraining()
+     * deleteTraining()
+     * addCourse()
+     * deleteCourse()
+     */
+
+	//get the staff list  这里直接System.out.println()不返回内容
     public List<Staff> getStaff() {
     	System.out.println("test");
     	

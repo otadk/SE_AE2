@@ -1,9 +1,14 @@
-TeachingRequirement,Math teacher!!!!
-TeachingRequirement,We have too many computer science students!! We need related lecturers!!!
+TeachingRequirement,Math teacher!!!!,1011Math
+TeachingRequirement,We have too many computer science students!! We need related lecturers!!!,1033SoftwareEngineering
 Staff,Jupyter,Python,Information Visualization
 Staff,Peter,High level language skill,Handsome
+Staff,Tim,Cute
+Staff,Bob,Strong
+Staff,Julia,Psychology
 Training,Java Project,Jupyter,Tim
 Training,Be alive,Peter,Tim,Bob
-User,Gay,gay,ClassDirector
+User,Lara,larabest,ClassDirector
 User,Admin,admin,Administrator
 User,Tom,123456,ClassDirector
+Course,1011Math,Tim
+Course,1033SoftwareEngineering
