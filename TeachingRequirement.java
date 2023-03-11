@@ -4,7 +4,7 @@ public class TeachingRequirement {
 
     private String name;
     private List<Course> courseList;
-    
+
     public TeachingRequirement(String data, List<Course> courseList) {
         this.name = data;
         this.courseList = courseList;
