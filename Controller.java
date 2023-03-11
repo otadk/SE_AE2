@@ -172,10 +172,10 @@ public class Controller {
                 //展示可以输出的命令
                 //调用administrator的方法
 
-                String[] commands = {"getTeachingRequirement", "getStaffList", "addTraining", "deleteTraining","addCourse","deleteCourse","exit"};
+                String[] commands = {"getTeachingRequirement", "getStaffList", "getTrainingList", "addTraining", "deleteTraining", "getCoursegList", "addCourse","deleteCourse","exit"};
                 
                 System.out.println("\nThis is the menu of administrator : ");
-                for (int i = 0; i < 7; ++i) {
+                for (int i = 0; i < 9; ++i) {
                     System.out.println("input " + i + " ->> " + commands[i]);
                 }
                 System.out.println("Please select your operation: ");
@@ -187,24 +187,30 @@ public class Controller {
                     administrator.getTeachingRequirement(dataToTeachingRequirementList(data));
                 } else if (input.equals(commands[1]) || input.equals("1")) {
                     System.out.println("Selected operation: " + commands[1] + "\n");
-                    // administrator.getStaffList(dataToTeachingRequirementList(data));
+                    // administrator.getTeachingRequirement(dataToTeachingRequirementList(data));
                 } else if (input.equals(commands[2]) || input.equals("2")) {
                     System.out.println("Selected operation: " + commands[2] + "\n");
-                    System.out.println("Please add or change a training with name and staff: ");
-                    // administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim());
+                    // administrator.getTrainingList(dataToTrainingList(data));
                 } else if (input.equals(commands[3]) || input.equals("3")) {
                     System.out.println("Selected operation: " + commands[3] + "\n");
-                    System.out.println("Please delete a training with name: ");
-                    // administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim());
+                    System.out.println("Please add or change a training with name and staff: ");
+                    // administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim());
                 } else if (input.equals(commands[4]) || input.equals("4")) {
                     System.out.println("Selected operation: " + commands[4] + "\n");
-                    System.out.println("Please add or change a course with name and staff: ");
-                    // administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim());
+                    System.out.println("Please delete a training with name: ");
+                    // administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim());
                 } else if (input.equals(commands[5]) || input.equals("5")) {
                     System.out.println("Selected operation: " + commands[5] + "\n");
+                    // administrator.getCoursegList(dataToCourseList(data));
+                } else if (input.equals(commands[6]) || input.equals("6")) {
+                    System.out.println("Selected operation: " + commands[6] + "\n");
+                    System.out.println("Please add or change a course with name and staff: ");
+                    // administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim());
+                } else if (input.equals(commands[7]) || input.equals("7")) {
+                    System.out.println("Selected operation: " + commands[7] + "\n");
                     System.out.println("Please delete a course with name: ");
                     // administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim());
-                } else if (input.equals(commands[6]) || input.equals("6")) {
+                } else if (input.equals(commands[8]) || input.equals("8")) {
                     System.out.println("Selected operation: " + commands[6] + "\n");
                     break;
                 } else {

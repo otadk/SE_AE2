@@ -12,15 +12,19 @@ public class Administrator extends User {
 
     // 完成以下调用，其他的函数可以删除
     // administrator.getStaffList(dataToTeachingRequirementList(data));
+    // administrator.getTrainingList(dataToTrainingList(data));
     // administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim());
     // administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim());
+    // administrator.getCourseList(dataToCourseList(data));
     // administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim());
     // administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim());
 
     /*
      * getStaffList()
+     * getTrainingList()
      * addTraining()
      * deleteTraining()
+     * getCourseList()
      * addCourse()
      * deleteCourse()
      */
