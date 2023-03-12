@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 
 public class Controller {
 
+    //user改成抽象类 有空再改
+
     //读取csv数据转化为list
     public List<List<Object>> loadData() {
 
@@ -187,31 +189,31 @@ public class Controller {
                     administrator.getTeachingRequirement(dataToTeachingRequirementList(data));
                 } else if (input.equals(commands[1]) || input.equals("1")) {
                     System.out.println("Selected operation: " + commands[1] + "\n");
-                    // administrator.getTeachingRequirement(dataToTeachingRequirementList(data));
+                    administrator.getStaffList(dataToStaffList(data));
                 } else if (input.equals(commands[2]) || input.equals("2")) {
                     System.out.println("Selected operation: " + commands[2] + "\n");
-                    // administrator.getTrainingList(dataToTrainingList(data));
+                    administrator.getTrainingList(dataToTrainingList(data));
                 } else if (input.equals(commands[3]) || input.equals("3")) {
                     System.out.println("Selected operation: " + commands[3] + "\n");
-                    System.out.println("Please add or change a training with name and staff: ");
-                    // updateTrainingData(data, administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim()));
+                    System.out.println("Please add or change a training with name and staffs (use , to divide them): ");
+                    updateTrainingData(data, administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[4]) || input.equals("4")) {
                     System.out.println("Selected operation: " + commands[4] + "\n");
                     System.out.println("Please delete a training with name: ");
-                    // updateTrainingData(data, administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim()));
+                    updateTrainingData(data, administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[5]) || input.equals("5")) {
                     System.out.println("Selected operation: " + commands[5] + "\n");
-                    // administrator.getCoursegList(dataToCourseList(data));
+                    administrator.getCoursegList(dataToCourseList(data));
                 } else if (input.equals(commands[6]) || input.equals("6")) {
                     System.out.println("Selected operation: " + commands[6] + "\n");
-                    System.out.println("Please add or change a course with name and staff: ");
-                    // updateCourseData(data, administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim()));
+                    System.out.println("Please add or change a course with name and staff (use , to divide them): ");
+                    updateCourseData(data, administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[7]) || input.equals("7")) {
                     System.out.println("Selected operation: " + commands[7] + "\n");
                     System.out.println("Please delete a course with name: ");
-                    // updateCourseData(data, administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim()));
+                    updateCourseData(data, administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[8]) || input.equals("8")) {
-                    System.out.println("Selected operation: " + commands[6] + "\n");
+                    System.out.println("Selected operation: " + commands[8] + "\n");
                     break;
                 } else {
                     System.out.println("Please input a valid command");

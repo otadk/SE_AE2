@@ -26,9 +26,13 @@ public class User {
         return username + "," + password + "," + type;
     }
 
-    public void getTeachingRequirement(List<TeachingRequirement> data){
+    public void getTeachingRequirement(List<TeachingRequirement> data) {
         for (int i = 0; i < data.size(); ++i) {
-            System.out.println("TeachingRequirement " + i + " :: " + data.get(i).toString());
+            System.out.print("TeachingRequirement " + String.format("%3d", i) + " :: " + data.get(i).getName() + " ---");
+            for (Course course : data.get(i).getCourseList()) {
+                System.out.print(" | " + course.getName());
+            }
+            System.out.println();
         }
     }
 }
