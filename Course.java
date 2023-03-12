@@ -30,4 +30,12 @@ public class Course {
     public List<Staff> getStaffList() {
         return staffList;
     }
+
+    public void setStaffList(List<Staff> staffList) {
+        this.staffList = staffList;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

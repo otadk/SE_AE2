@@ -21,6 +21,7 @@ public class Administrator extends User {
 
     public void addTraining(List<Training> data, String input) {
 
+
         String[] parts = input.split(",");
         String trainingName = parts[0];
         String staffName = parts[1];
