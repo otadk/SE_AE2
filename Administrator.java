@@ -66,7 +66,7 @@ public class Administrator extends User {
         return data;
     }
 
-    public void getCoursegList(List<Course> data) {
+    public void getCourseList(List<Course> data) {
         for (int i = 0; i < data.size(); ++i) {
             System.out.print("Course " + String.format("%3d", i) + " :: " + data.get(i).getName() + " ---");
             for (Staff staff : data.get(i).getStaffList()) {
