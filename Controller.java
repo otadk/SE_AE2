@@ -153,11 +153,11 @@ public class Controller {
                 } else if (input.equals(commands[1]) || input.equals("1")) {
                     System.out.println("Selected operation: " + commands[1] + "\n");
                     System.out.println("Please add or change a teachingRequirement with name and course: ");
-                    // classDirector.addTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim());
+                    // updateTeachingRequirementData(data, classDirector.addTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[2]) || input.equals("2")) {
                     System.out.println("Selected operation: " + commands[2] + "\n");
                     System.out.println("Please delte a teachingRequirement with name: ");
-                    // classDirector.deleteTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim());
+                    // updateTeachingRequirementData(data, classDirector.deleteTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[3]) || input.equals("3")) {
                     System.out.println("Selected operation: " + commands[3] + "\n");
                     break;
@@ -194,22 +194,22 @@ public class Controller {
                 } else if (input.equals(commands[3]) || input.equals("3")) {
                     System.out.println("Selected operation: " + commands[3] + "\n");
                     System.out.println("Please add or change a training with name and staff: ");
-                    // administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim());
+                    // updateTrainingData(data, administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[4]) || input.equals("4")) {
                     System.out.println("Selected operation: " + commands[4] + "\n");
                     System.out.println("Please delete a training with name: ");
-                    // administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim());
+                    // updateTrainingData(data, administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[5]) || input.equals("5")) {
                     System.out.println("Selected operation: " + commands[5] + "\n");
                     // administrator.getCoursegList(dataToCourseList(data));
                 } else if (input.equals(commands[6]) || input.equals("6")) {
                     System.out.println("Selected operation: " + commands[6] + "\n");
                     System.out.println("Please add or change a course with name and staff: ");
-                    // administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim());
+                    // updateCourseData(data, administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[7]) || input.equals("7")) {
                     System.out.println("Selected operation: " + commands[7] + "\n");
                     System.out.println("Please delete a course with name: ");
-                    // administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim());
+                    // updateCourseData(data, administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[8]) || input.equals("8")) {
                     System.out.println("Selected operation: " + commands[6] + "\n");
                     break;
@@ -242,5 +242,18 @@ public class Controller {
 
     public List<Course> dataToCourseList(List<List<Object>> data) {
         return data.get(4).stream().map(obj -> (Course) obj).collect(Collectors.toList());
+    }
+
+    //更新data
+    public void updateTeachingRequirementData(List<List<Object>> data, List<TeachingRequirement> teachingRequirementList) {
+        data.set(0, teachingRequirementList.stream().map(obj -> (Object) obj).collect(Collectors.toList()));
+    }
+
+    public void updateTrainingData(List<List<Object>> data, List<Training> trainingList) {
+        data.set(2, trainingList.stream().map(obj -> (Object) obj).collect(Collectors.toList()));
+    }
+
+    public void updateCourseData(List<List<Object>> data, List<Course> courseList) {
+        data.set(4, courseList.stream().map(obj -> (Object) obj).collect(Collectors.toList()));
     }
 }
