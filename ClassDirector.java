@@ -14,6 +14,14 @@ public class ClassDirector extends User {
         if(input.contains(",")){
             String [] stringData = input.split(",");
             TeachingRequirement tr = new TeachingRequirement(stringData[0].trim(), Arrays.stream(stringData, 1, stringData.length).map(arr -> new Course(arr.trim())).collect(Collectors.toList()));
+            // Find the TeachingRequirement object in the list with the given name
+            for (int i = 0; i < data.size(); ++i) {
+                if (tr.getName().equals(data.get(i).getName())) {
+                    data.set(i, tr);
+                    System.out.println("change " + tr.getName() + " successfully");
+                    return data;
+                }
+            }
             data.add(tr);
             System.out.println("add " + tr.getName() + " successfully");
             return data;
