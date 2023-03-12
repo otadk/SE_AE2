@@ -12,8 +12,6 @@ import java.io.PrintWriter;
 
 public class Controller {
 
-    //user改成抽象类 有空再改
-
     //读取csv数据转化为list
     public List<List<Object>> loadData() {
 
@@ -174,7 +172,7 @@ public class Controller {
                 //展示可以输出的命令
                 //调用administrator的方法
 
-                String[] commands = {"getTeachingRequirement", "getStaffList", "getTrainingList", "addTraining", "deleteTraining", "getCoursegList", "addCourse","deleteCourse","exit"};
+                String[] commands = {"getTeachingRequirement", "getStaffList", "getTrainingList", "addTraining", "deleteTraining", "getCourseList", "addCourse","deleteCourse","exit"};
                 
                 System.out.println("\nThis is the menu of administrator : ");
                 for (int i = 0; i < 9; ++i) {
@@ -203,7 +201,7 @@ public class Controller {
                     updateTrainingData(data, administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[5]) || input.equals("5")) {
                     System.out.println("Selected operation: " + commands[5] + "\n");
-                    administrator.getCoursegList(dataToCourseList(data));
+                    administrator.getCourseList(dataToCourseList(data));
                 } else if (input.equals(commands[6]) || input.equals("6")) {
                     System.out.println("Selected operation: " + commands[6] + "\n");
                     System.out.println("Please add or change a course with name and staff (use , to divide them): ");
