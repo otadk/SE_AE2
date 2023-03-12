@@ -1,5 +1,5 @@
 TeachingRequirement,Math teacher!!!!,1011Math
-TeachingRequirement,We have too many computer science students!! We need related lecturers!!!,1033SoftwareEngineering
+TeachingRequirement,We have too many computer science students!! We need related lecturers!!!,1033SoftwareEngineering,1034IT+
 Staff,Jupyter,Python,Information Visualization
 Staff,Peter,High level language skill,Handsome
 Staff,Tim,Cute
@@ -12,3 +12,4 @@ User,Admin,admin,Administrator
 User,Tom,123456,ClassDirector
 Course,1011Math,Tim
 Course,1033SoftwareEngineering
+Course,1034IT+
