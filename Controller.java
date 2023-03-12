@@ -155,11 +155,11 @@ public class Controller {
                 } else if (input.equals(commands[1]) || input.equals("1")) {
                     System.out.println("Selected operation: " + commands[1] + "\n");
                     System.out.println("Please add or change a teachingRequirement with name and course: ");
-                    // updateTeachingRequirementData(data, classDirector.addTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim()));
+                    updateTeachingRequirementData(data, classDirector.addTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[2]) || input.equals("2")) {
                     System.out.println("Selected operation: " + commands[2] + "\n");
                     System.out.println("Please delte a teachingRequirement with name: ");
-                    // updateTeachingRequirementData(data, classDirector.deleteTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim()));
+                    updateTeachingRequirementData(data, classDirector.deleteTeachingRequirement(dataToTeachingRequirementList(data), scanner.nextLine().trim()));
                 } else if (input.equals(commands[3]) || input.equals("3")) {
                     System.out.println("Selected operation: " + commands[3] + "\n");
                     break;
