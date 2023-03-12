@@ -2,95 +2,161 @@ import java.util.List;
 
 public class Administrator extends User {
 
-    private List<Training> trainingList;
-    private List<Staff> staffList;
-    private List<Staff> selectedStaff;
 
     public Administrator (String username, String password) {
         super(username, password, "Administrator");
     }
 
-    // 完成以下调用，其他的函数可以删除
-    // administrator.getStaffList(dataToTeachingRequirementList(data));
-    // administrator.getTrainingList(dataToTrainingList(data));
-    // administrator.addTraining(dataToTrainingList(data), scanner.nextLine().trim());
-    // administrator.deleteTraining(dataToTrainingList(data), scanner.nextLine().trim());
-    // administrator.getCourseList(dataToCourseList(data));
-    // administrator.addCourse(dataToCourseList(data), scanner.nextLine().trim());
-    // administrator.deleteCourse(dataToCourseList(data), scanner.nextLine().trim());
+     public void getStaffList(List<Staff> data){
+        for (int i = 0; i < data.size(); ++i) {
+            System.out.println("Staff " + i + " :: " + data.get(i).toString());
+        }
+    }    
 
-    /*
-     * getStaffList()
-     * getTrainingList()
-     * addTraining()
-     * deleteTraining()
-     * getCourseList()
-     * addCourse()
-     * deleteCourse()
-     */
+    public void getTrainingList(List<Training> data){
+        for (int i = 0; i < data.size(); ++i) {
+            System.out.println(data.get(i).toString());
+        }
+    }
 
-	//get the staff list  这里直接System.out.println()不返回内容
-    public List<Staff> getStaff() {
-    	System.out.println("test");
-    	
-        return staffList;
+    public void addTraining(List<Training> data, String input) {
+
+        String[] parts = input.split(",");
+        String trainingName = parts[0];
+        String staffName = parts[1];
+    
+        // Create a new Staff object with the given name
+        Staff staff = new Staff(staffName);
+    
+        // Find the Training object in the list with the given name
+        Training matchingTraining = null;
+        for (Training training : data) {
+            if (training.getName().equals(trainingName)) {
+                matchingTraining = training;
+                break;
+            }
+        }
+    
+        if (matchingTraining != null) {
+            // Add the new Staff object to the matching Training object's staff list
+            // matchingTraining.addStaffToList(staff);
+            List<Staff> newList = matchingTraining.getStaffList();
+            newList.add(staff);
+            matchingTraining.setStaffList(newList);
+            System.out.println(data);
+        } else {
+            // If the matching Training object wasn't found, create a new one with the given name
+            Training newAddTraining = new Training(trainingName);
+            List<Staff> newList = newAddTraining.getStaffList();
+            newList.add(staff);
+            newAddTraining.setStaffList(newList);
+            data.add(newAddTraining);
+            System.out.println(data);
+        }
     }
     
-    public void selectStaff(String name) {
-        boolean flag1 = true;
-        while (flag1) {
-            for (Staff staff : staffList) {
-                if (staff.getName().equals(name)) {
-                    selectedStaff.add(staff);
-                    break;
-                } else {
-                    System.out.println("Please enter the correct name.");
-                }
+    
+    public void deleteTraining(List<Training> data, String input) {
+        Training matchingTraining = null;
+        Staff matchingStaff = null;
+    
+        String[] parts = input.split(",");
+        String trainingName = parts[0];
+        String staffName = parts[1];
 
+        // Find the training program and staff member to remove
+        for (Training training : data) {
+            for (Staff staff : training.getStaffList()) {
+                if (staff.getName().equals(staffName)) {
+                    matchingStaff = staff;
+                    break;
+                }
             }
+            if (training.getName().equals(trainingName)) {
+                matchingTraining = training;
+                break;
+            }
+        }
+    
+        if (matchingTraining != null && matchingStaff != null) {
+            // Remove the staff member from the training program's staff list
+            List<Staff> staffList = matchingTraining.getStaffList();
+            staffList.remove(matchingStaff);
+            matchingTraining.setStaffList(staffList);
+            System.out.println(data);
+        } else {
+            System.out.println("Staff member or training program not found.");
         }
     }
 
-    public void deleteSelectStaff(String name) {
-        boolean flag2 = true;
-        while (flag2){
-            for (Staff staff : selectedStaff) {
-                flag2 = false;
-                if (staff.getName().equals(name)) {
-                    selectedStaff.remove(staff);
+    public void addCourse(List<Course> data, String input) {
+
+        String[] parts = input.split(",");
+        String courseName = parts[0];
+        String staffName = parts[1];
+    
+        // Create a new Staff object with the given name
+        Staff staff = new Staff(staffName);
+    
+        // Find the Course object in the list with the given name
+        Course matchingCourse = null;
+        for (Course course : data) {
+            if (course.getName().equals(courseName)) {
+                matchingCourse = course;
+                break;
+            }
+        }
+    
+        if (matchingCourse != null) {
+            // Add the new Staff object to the matching Course object's staff list
+            // matchingCourse.addStaffToList(staff);
+            List<Staff> newList = matchingCourse.getStaffList();
+            newList.add(staff);
+            matchingCourse.setStaffList(newList);
+            System.out.println(data);
+        } else {
+            // If the matching Course object wasn't found, create a new one with the given name
+            Course newAddCourse = new Course(courseName);
+            List<Staff> newList = newAddCourse.getStaffList();
+            newList.add(staff);
+            newAddCourse.setStaffList(newList);
+            data.add(newAddCourse);
+            System.out.println(data);
+        }
+    }
+    
+    public void deleteCourse(List<Course> data, String input) {
+        Course matchingCourse = null;
+        Staff matchingStaff = null;
+    
+        String[] parts = input.split(",");
+        String courseName = parts[0];
+        String staffName = parts[1];
+
+        // Find the training program and staff member to remove
+        for (Course course : data) {
+            for (Staff staff : course.getStaffList()) {
+                if (staff.getName().equals(staffName)) {
+                    matchingStaff = staff;
                     break;
-                } else {
-                    System.out.println("Please enter the correct name.");
                 }
             }
+            if (course.getName().equals(courseName)) {
+                matchingCourse = course;
+                break;
+            }
+        }
+    
+        if (matchingCourse != null && matchingStaff != null) {
+            // Remove the staff member from the training program's staff list
+            List<Staff> staffList = matchingCourse.getStaffList();
+            staffList.remove(matchingStaff);
+            matchingCourse.setStaffList(staffList);
+            System.out.println("adm"+data);
+        } else {
+            System.out.println("Staff member or course program not found.");
         }
     }
 
-    public void addTraining(String name) {
-        Training training = new Training(name);
-        trainingList.add(training);
-    }
 
-    public void deleteTraining(String name) {
-        boolean flag3 = true;
-        while (flag3){
-            for (Training training : trainingList) {
-                flag3 = false;
-                if (training.getName().equals(name)) {
-                    trainingList.remove(training);
-                    break;
-                } else {
-                    System.out.println("Please enter the correct name.");
-                }
-            }
-        }
-    }
-
-    public List<Training> getTrainingList() {
-        return trainingList;
-    }
-
-    public List<Staff> getSelectedStaff() {
-        return selectedStaff;
-    }
 }
