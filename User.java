@@ -2,9 +2,9 @@ import java.util.List;
 
 public class User {
 
-    private String username;  //用户名
-    private String password;  //用户密码
-    private String type;      //用户类型，子类创建时会提供
+    private String username;
+    private String password;
+    private String type; // user type, provided by subclass
 
     public User(String username, String password, String type) {
         this.username = username;
@@ -12,12 +12,11 @@ public class User {
         this.type = type;
     }
     
-    //检查用户名和用户密码是否正确
+    // check username and password
     public boolean check(String username, String password) {
         return this.username.equals(username.trim()) && this.password.equals(password.trim());
     }
 
-    //获取用户类型
     public String getType() {
         return this.type;
     }

@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 
 public class Controller {
 
-    //读取csv数据转化为list
+    // read csv data and convert it to list
     public List<List<Object>> loadData() {
 
         List<List<Object>> data = new ArrayList<List<Object>>();
@@ -21,7 +21,7 @@ public class Controller {
             data.add(new ArrayList<Object>());
         }
 
-        //通过BufferedReader将文件转为String，通过数据流输入到list里
+        // convert the file to String through BufferedReader and input it into the list through data stream
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("data.csv"))) {
             String line = "";
             while ((line = bufferedReader.readLine()) != null) {
@@ -45,13 +45,13 @@ public class Controller {
         return data;
     }
 
-    //保存数据，也就是list转为csv
+    // save data, that is, convert list to csv
     public void saveData(List<List<Object>> data) {
 
-        //用stirngData作为输入文件的数据流的源
+        // use stirngData as the source of the data stream of the input file
         List<String[]> stringData = new ArrayList<String[]>();
 
-        //把每种数据都通过toString导入stringData
+        // import each type of data into stringData through toString 
         for (TeachingRequirement t : dataToTeachingRequirementList(data)) {
             stringData.add(
                     Stream.concat(Stream.of("TeachingRequirement"), Arrays.stream(t.toString().split(",")))
@@ -94,10 +94,10 @@ public class Controller {
         }
     }
 
-    //用户登陆
+    // user login
     public User login(Scanner scanner, List<User> userData) {
         
-        //尝试登陆次数最多100次
+        // the maximum number of login attempts is 100
         for (int times = 0; times < 100; ++times) {
 
             System.out.println("Please input your username::");
@@ -106,7 +106,7 @@ public class Controller {
             System.out.println("Please input your password::");
             String password = scanner.nextLine();
             
-            //查看是否存在该用户
+            // check whether the user exists
             for (int i = 0; i < userData.size(); ++i) {
                 if (userData.get(i).check(username, password)) {
                     if (userData.get(i).getType().equals("ClassDirector")) {
@@ -124,19 +124,17 @@ public class Controller {
         return null;
     }
     
-    //循环 用户交互指令，调用子方法实现用户指令
+    // loop user interaction commands and call sub-methods to implement user commands
     public void commandLoop(Scanner scanner, User user, List<List<Object>> data) {
         
-        //一次登陆最多操作1e5次
+        // one login can operate up to 1e5 times
         for (int times = 0; times < 1e5; ++times) {
             
             if (user.getType().equals("ClassDirector")) {
 
                 ClassDirector classDirector = (ClassDirector)user;
                 
-                //展示可以输出的命令
-                //调用classDirector的方法
-
+                // show commands
                 String[] commands = {"getTeachingRequirement", "addTeachingRequirement", "deleteTeachingRequirement", "exit"};
 
                 System.out.println("\nThis is the menu of classDirector : ");
@@ -147,6 +145,7 @@ public class Controller {
 
                 String input = scanner.nextLine();
 
+                // call classDirector methods
                 if (input.equals(commands[0]) || input.equals("0")) {
                     System.out.println("Selected operation: " + commands[0] + "\n");
                     classDirector.getTeachingRequirement(dataToTeachingRequirementList(data));
@@ -169,9 +168,7 @@ public class Controller {
 
                 Administrator administrator = (Administrator)user;
 
-                //展示可以输出的命令
-                //调用administrator的方法
-
+                // show commands
                 String[] commands = {"getTeachingRequirement", "getStaffList", "getTrainingList", "addTraining", "deleteTraining", "getCourseList", "addCourse","deleteCourse","exit"};
                 
                 System.out.println("\nThis is the menu of administrator : ");
@@ -182,6 +179,7 @@ public class Controller {
                 
                 String input = scanner.nextLine();
                 
+                // call administrator methods
                 if (input.equals(commands[0]) || input.equals("0")) {
                     System.out.println("Selected operation: " + commands[0] + "\n");
                     administrator.getTeachingRequirement(dataToTeachingRequirementList(data));
@@ -218,12 +216,10 @@ public class Controller {
                 }
             }
         }
-
-        //结束程序
         System.out.println("See you latter ~~~ ");
     }
 
-    //将抽象类的list转为具体数据类的list，本质是强制类型转化
+    // Convert the list of abstract classes into the list of concrete data classes. The essence is to force type conversion
     public List<TeachingRequirement> dataToTeachingRequirementList(List<List<Object>> data) {
         return data.get(0).stream().map(obj -> (TeachingRequirement) obj).collect(Collectors.toList());
     }
@@ -244,7 +240,7 @@ public class Controller {
         return data.get(4).stream().map(obj -> (Course) obj).collect(Collectors.toList());
     }
 
-    //更新data
+    // update data
     public void updateTeachingRequirementData(List<List<Object>> data, List<TeachingRequirement> teachingRequirementList) {
         data.set(0, teachingRequirementList.stream().map(obj -> (Object) obj).collect(Collectors.toList()));
     }

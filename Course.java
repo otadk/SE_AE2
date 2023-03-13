@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class Course {
 
@@ -7,6 +8,7 @@ public class Course {
 
     public Course(String data) {
         this.name = data;
+        this.staffList = new ArrayList<Staff> ();
     }
 
     public Course(String data, List<Staff> staffList) {
